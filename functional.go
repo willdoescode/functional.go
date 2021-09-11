@@ -15,14 +15,3 @@ func Reduce[T any, A any](l []T, initVal A, f func(A, T) A) A {
 	first, rest := l[0], l[1:]
 	return Reduce(rest, f(initVal, first), f)
 }
-
-// func main() {
-// 	x := []int{1, 2, 3, 4}
-// 	fmt.Println(Map(func(x int) int {
-// 		return x * 2
-// 	}, x))
-
-// 	fmt.Println(Reduce(x, 0, func(r int, curr int) int {
-// 		return curr + r
-// 	}))
-// }
