@@ -2,8 +2,6 @@
 
 ## Adding functional programming capabilities to golang with new generics
 
-### Examples
-
 ### Any
 
 ```go
