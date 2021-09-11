@@ -8,7 +8,7 @@ import (
 
 func main() {
 	x := []int{1, 2, 3, 4}
-	fmt.Println(f.Reduce(x, 0, func(r int, curr int) int {
-		return curr + r
-	}))
+	fmt.Println(f.Map(func(x int) int {
+		return x * 2
+	}, x))
 }
