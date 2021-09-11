@@ -59,3 +59,13 @@ func Zip[T any, A any](l1 []T, l2 []A) []Pair[T, A] {
 	}
 	return res
 }
+
+func Filter[T any](c func(T) bool, l []T) []T {
+	var res []T
+	for _, x := range l {
+		if c(x) {
+			res = append(res, x)
+		}
+	}
+	return res
+}

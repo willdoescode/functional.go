@@ -79,3 +79,13 @@ func TestId(t *testing.T) {
 		failMessage(t, "Id", 5, Id(5))
 	}
 }
+
+func TestFilter(t *testing.T) {
+	x := []int{1, 2, 3, 4}
+	correct := []int{2, 4}
+	filterRes := Filter(func(t int) bool { return t%2 == 0 }, x)
+
+	if !reflect.DeepEqual(filterRes, correct) {
+		failMessage(t, "Filter", correct, filterRes)
+	}
+}
