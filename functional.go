@@ -1,4 +1,4 @@
-package functionalgo
+package f
 
 func Map[T any, A any](f func(T) A, l []T) []A {
 	var res []A
