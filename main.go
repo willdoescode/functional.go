@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package functionalgo
 
 func Map[T any, A any](f func(T) A, l []T) []A {
 	var res []A
@@ -18,13 +16,13 @@ func Reduce[T any, A any](l []T, initVal A, f func(A, T) A) A {
 	return Reduce(rest, f(initVal, first), f)
 }
 
-func main() {
-	x := []int{1, 2, 3, 4}
-	fmt.Println(Map(func(x int) int {
-		return x * 2
-	}, x))
+// func main() {
+// 	x := []int{1, 2, 3, 4}
+// 	fmt.Println(Map(func(x int) int {
+// 		return x * 2
+// 	}, x))
 
-	fmt.Println(Reduce(x, 0, func(r int, curr int) int {
-		return curr + r
-	}))
-}
+// 	fmt.Println(Reduce(x, 0, func(r int, curr int) int {
+// 		return curr + r
+// 	}))
+// }
