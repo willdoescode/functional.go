@@ -49,6 +49,20 @@ func TestZip(t *testing.T) {
 	if !reflect.DeepEqual(zipRes, correct) {
 		failMessage(t, "Zip", correct, zipRes)
 	}
+
+	x = []int{1, 2, 3, 4}
+	y = []int{1, 2, 3}
+
+	correct = []Pair[int, int]{
+		{A: 1, B: 1},
+		{A: 2, B: 2},
+		{A: 3, B: 3},
+	}
+	zipRes = Zip(x, y)
+
+	if !reflect.DeepEqual(zipRes, correct) {
+		failMessage(t, "Zip", correct, zipRes)
+	}
 }
 
 func TestAny(t *testing.T) {

@@ -8,6 +8,13 @@ func Map[T any, A any](f func(T) A, l []T) []A {
 	return res
 }
 
+/* Like Map but does not produce a new list. */
+func MapM_[T any](f func(T), l []T) {
+	for _, y := range l {
+		f(y)
+	}
+}
+
 func Sum(l []int) int {
 	return Reduce(l, 0, func(prev int, curr int) int {
 		return prev + curr
@@ -38,10 +45,17 @@ type Pair[T any, A any] struct {
 	B A
 }
 
+func min(a int, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+
 func Zip[T any, A any](l1 []T, l2 []A) []Pair[T, A] {
 	var res []Pair[T, A]
-	for i, v := range l1 {
-		res = append(res, Pair[T, A]{A: v, B: l2[i]})
+	for i := 0; i < min(len(l1), len(l2)); i++ {
+		res = append(res, Pair[T, A]{A: l1[i], B: l2[i]})
 	}
 	return res
 }
