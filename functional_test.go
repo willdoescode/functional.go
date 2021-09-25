@@ -65,6 +65,31 @@ func TestZip(t *testing.T) {
 	}
 }
 
+func add1(x int) int { return x + 1 }
+func add2(x int) int { return x + 2 }
+
+func TestCompose(t *testing.T) {
+	correct := 6
+	composeRes := Compose[int, int](add1, add2)(3)
+
+	if composeRes != correct {
+		failMessage(t, "Compose", correct, composeRes)
+	}
+}
+
+func TestZipWith(t *testing.T) {
+	x := []int{1, 2, 3, 4}
+	y := []int{2, 4, 6, 8}
+	correct := []int{3, 6, 9, 12}
+	zipWithRes := ZipWith(x, y, func(x int, y int) int {
+		return x + y
+	})
+
+	if !reflect.DeepEqual(zipWithRes, correct) {
+		failMessage(t, "ZipWith", correct, zipWithRes)
+	}
+}
+
 func TestAny(t *testing.T) {
 	x := []int{1, 4, 3, 7, 9}
 	anyRes := Any(func(y int) bool { return y%2 == 0 }, x)

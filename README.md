@@ -64,3 +64,23 @@ y := []int{10, 9, 8, 7}
 
 fmt.Println(f.Zip(x, y))
 ```
+
+### ZipWith
+
+```go
+x := []int{1, 2, 3, 4}
+y := []int{2, 4, 6, 8}
+
+fmt.Println(ZipWith(x, y, func(x int, y int) int {
+	return x + y
+}))
+```
+
+### Compose
+
+```go
+func add1(x int) int { return x + 1 }
+func add2(x int) int { return x + 2 }
+
+fmt.Println(Compose[int, int](add1, add2)(3))
+```

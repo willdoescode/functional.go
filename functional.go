@@ -60,6 +60,14 @@ func Zip[T any, A any](l1 []T, l2 []A) []Pair[T, A] {
 	return res
 }
 
+func ZipWith[T any, A any, Z any](l1 []T, l2 []A, op func(T, A) Z) []Z {
+	var res []Z
+	for i := 0; i < min(len(l1), len(l2)); i++ {
+		res = append(res, op(l1[i], l2[i]))
+	}
+	return res
+}
+
 func Filter[T any](c func(T) bool, l []T) []T {
 	var res []T
 	for _, x := range l {
@@ -68,4 +76,10 @@ func Filter[T any](c func(T) bool, l []T) []T {
 		}
 	}
 	return res
+}
+
+func Compose[F any, G any, T any, U any, V any](f func(U) V, g func(T) U) func(T) V {
+	return func(x T) V {
+		return f(g(x))
+	}
 }
